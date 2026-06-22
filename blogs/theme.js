@@ -9,8 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-        // Check if startViewTransition is supported
-        if (!document.startViewTransition) {
+        const noTransition = toggleBtn.hasAttribute('data-no-transition');
+
+        // Check if startViewTransition is supported or disabled
+        if (noTransition || !document.startViewTransition) {
             setTheme(newTheme);
             return;
         }

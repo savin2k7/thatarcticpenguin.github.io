@@ -346,58 +346,5 @@ h1 {
     height: 100vh;
     pointer-events: none;
     z-index: 6;
-}
 
-/* View Transition Styles */
-::view-transition-group(root) {
-    animation-timing-function: var(--expo-in);
-}
-
-::view-transition-new(root) {
-    -webkit-mask: var(--mask-gif) center / 0 no-repeat;
-    mask: var(--mask-gif) center / 0 no-repeat;
-    animation: scale 1.8s;
-    animation-fill-mode: both;
-}
-
-::view-transition-old(root) {
-    animation: old-exit 1.8s;
-    animation-fill-mode: both;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-    mix-blend-mode: normal;
-}
-
-@keyframes scale {
-    0% {
-        -webkit-mask-size: 0;
-        mask-size: 0;
-    }
-    10% {
-        -webkit-mask-size: 50vmax;
-        mask-size: 50vmax;
-    }
-    85% {
-        -webkit-mask-size: 50vmax;
-        mask-size: 50vmax;
-    }
-    100% {
-        -webkit-mask-size: 2000vmax;
-        mask-size: 2000vmax;
-    }
-}
-
-@keyframes old-exit {
-    0% {
-        opacity: 1;
-    }
-    80% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
 
