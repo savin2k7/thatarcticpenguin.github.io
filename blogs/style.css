@@ -114,18 +114,17 @@ nav a:hover {
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--toggle-btn-color);
+    color: var(--subtitle-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
-    border-radius: 50%;
-    transition: background-color 0.3s, color 0.3s;
+    padding: 0;
+    transition: color 0.3s ease;
 }
 
 .theme-toggle:hover {
-    color: var(--toggle-btn-hover-color);
-    background-color: var(--toggle-btn-hover-bg);
+    color: var(--h1-color);
+    background: none;
 }
 
 .theme-toggle svg {
@@ -346,7 +345,13 @@ h1 {
     height: 100vh;
     pointer-events: none;
     z-index: 6;
+}
+
 /* Animated Toggle Button SVG Styles */
+.theme-toggle {
+    view-transition-name: theme-toggle;
+}
+
 .solar-switch {
     display: block;
     width: 20px;
@@ -355,104 +360,35 @@ h1 {
 
 .solar-switch path {
     transform-origin: 12.5px 12.5px;
+    transform-box: view-box;
     stroke-dasharray: 1;
     stroke-dashoffset: 0;
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1),
+                stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Static Initial Theme Styles (No animation on first load) */
+/* Static Initial Theme Styles & Transition Rules */
 html[data-theme="light"] .sun-icon path {
     transform: scale(1);
     stroke-dashoffset: 0;
+    transition-delay: 0s, 0.3s;
 }
 
 html[data-theme="light"] .moon-icon path {
     transform: scale(0);
     stroke-dashoffset: 1;
+    transition-delay: 0s, 0s;
 }
 
 html[data-theme="dark"] .sun-icon path {
     transform: scale(0);
     stroke-dashoffset: 1;
+    transition-delay: 0s, 0s;
 }
 
 html[data-theme="dark"] .moon-icon path {
     transform: scale(1);
     stroke-dashoffset: 0;
+    transition-delay: 0s, 0.3s;
 }
 
-/* Active Animation Styles (Triggers only on click after class 'theme-toggled' is added) */
-html.theme-toggled[data-theme="light"] .sun-icon path {
-    animation: sun-enter 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-
-html.theme-toggled[data-theme="light"] .moon-icon path {
-    animation: moon-exit 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-
-html.theme-toggled[data-theme="dark"] .sun-icon path {
-    animation: sun-exit 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-
-html.theme-toggled[data-theme="dark"] .moon-icon path {
-    animation: moon-enter 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-
-@keyframes sun-enter {
-    0% {
-        transform: scale(0);
-        stroke-dashoffset: 1;
-    }
-    60% {
-        transform: scale(0.6);
-        stroke-dashoffset: 1;
-    }
-    100% {
-        transform: scale(1);
-        stroke-dashoffset: 0;
-    }
-}
-
-@keyframes sun-exit {
-    0% {
-        transform: scale(1);
-        stroke-dashoffset: 0;
-    }
-    40% {
-        transform: scale(0.6);
-        stroke-dashoffset: 1;
-    }
-    100% {
-        transform: scale(0);
-        stroke-dashoffset: 1;
-    }
-}
-
-@keyframes moon-enter {
-    0% {
-        transform: scale(0);
-        stroke-dashoffset: 1;
-    }
-    60% {
-        transform: scale(0.6);
-        stroke-dashoffset: 1;
-    }
-    100% {
-        transform: scale(1);
-        stroke-dashoffset: 0;
-    }
-}
-
-@keyframes moon-exit {
-    0% {
-        transform: scale(1);
-        stroke-dashoffset: 0;
-    }
-    40% {
-        transform: scale(0.6);
-        stroke-dashoffset: 1;
-    }
-    100% {
-        transform: scale(0);
-        stroke-dashoffset: 1;
-    }
-}
