@@ -346,5 +346,113 @@ h1 {
     height: 100vh;
     pointer-events: none;
     z-index: 6;
+/* Animated Toggle Button SVG Styles */
+.solar-switch {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
 
+.solar-switch path {
+    transform-origin: 12.5px 12.5px;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+}
 
+/* Static Initial Theme Styles (No animation on first load) */
+html[data-theme="light"] .sun-icon path {
+    transform: scale(1);
+    stroke-dashoffset: 0;
+}
+
+html[data-theme="light"] .moon-icon path {
+    transform: scale(0);
+    stroke-dashoffset: 1;
+}
+
+html[data-theme="dark"] .sun-icon path {
+    transform: scale(0);
+    stroke-dashoffset: 1;
+}
+
+html[data-theme="dark"] .moon-icon path {
+    transform: scale(1);
+    stroke-dashoffset: 0;
+}
+
+/* Active Animation Styles (Triggers only on click after class 'theme-toggled' is added) */
+html.theme-toggled[data-theme="light"] .sun-icon path {
+    animation: sun-enter 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+html.theme-toggled[data-theme="light"] .moon-icon path {
+    animation: moon-exit 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+html.theme-toggled[data-theme="dark"] .sun-icon path {
+    animation: sun-exit 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+html.theme-toggled[data-theme="dark"] .moon-icon path {
+    animation: moon-enter 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes sun-enter {
+    0% {
+        transform: scale(0);
+        stroke-dashoffset: 1;
+    }
+    60% {
+        transform: scale(0.6);
+        stroke-dashoffset: 1;
+    }
+    100% {
+        transform: scale(1);
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes sun-exit {
+    0% {
+        transform: scale(1);
+        stroke-dashoffset: 0;
+    }
+    40% {
+        transform: scale(0.6);
+        stroke-dashoffset: 1;
+    }
+    100% {
+        transform: scale(0);
+        stroke-dashoffset: 1;
+    }
+}
+
+@keyframes moon-enter {
+    0% {
+        transform: scale(0);
+        stroke-dashoffset: 1;
+    }
+    60% {
+        transform: scale(0.6);
+        stroke-dashoffset: 1;
+    }
+    100% {
+        transform: scale(1);
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes moon-exit {
+    0% {
+        transform: scale(1);
+        stroke-dashoffset: 0;
+    }
+    40% {
+        transform: scale(0.6);
+        stroke-dashoffset: 1;
+    }
+    100% {
+        transform: scale(0);
+        stroke-dashoffset: 1;
+    }
+}
